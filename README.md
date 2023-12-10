@@ -13,3 +13,9 @@
 `Invoke-Fzf` -> call fzf with predefined configurations
 
 > You can fork this project and adapt the member functions to suit your preferences.
+
+## Installing
+
+```
+git clone https://github.com/rafaeloledo/PsFzfUtil.git
+```
