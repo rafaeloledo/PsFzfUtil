@@ -17,5 +17,6 @@
 ## Installing
 
 ```
-git clone https://github.com/rafaeloledo/PsFzfUtil.git
+$path = $env:USERPROFILE\Documents\PowerShell\Modules
+git clone https://github.com/rafaeloledo/PsFzfUtil.git <path>
 ```
