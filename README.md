@@ -8,9 +8,15 @@
 
 > Use the function members
 
+```sh
+Set-PSReadLineKeyHandler -Chord "Ctrl+o" -ScriptBlock { MyFzf }
+Set-PSReadLineKeyHandler -Chord "Ctrl+r" -ScriptBlock { MyRg  }
+```
+
 ## Current members
 
-`Invoke-Fzf` -> call fzf with predefined configurations
+`MyFzf` -> call fzf with predefined configurations
+`MyRg` -> call fzf-ripgrep with predefined configurantions
 
 > You can fork this project and adapt the member functions to suit your preferences.
 
@@ -20,3 +26,4 @@
 $path = $env:USERPROFILE\Documents\PowerShell\Modules
 git clone https://github.com/rafaeloledo/PsFzfUtil.git <path>
 ```
+
