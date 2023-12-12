@@ -16,6 +16,7 @@ Set-PSReadLineKeyHandler -Chord "Ctrl+r" -ScriptBlock { MyRg  }
 ## Current members
 
 `MyFzf` -> call fzf with predefined configurations
+
 `MyRg` -> call fzf-ripgrep with predefined configurantions
 
 > You can fork this project and adapt the member functions to suit your preferences.
