@@ -5,7 +5,7 @@ New-Module -ScriptBlock {
       FileName = "fzf";
       Arguments = @(
         "--layout=reverse",
-        "--height=85%",
+        "--height=90%",
         "--border",
         "--no-sort",
         "--prompt=`"Search Directory> `""
@@ -36,6 +36,7 @@ New-Module -ScriptBlock {
         "--border",
         "--no-sort",
         "--delimiter=`":`"",
+        "--disabled",
         "--ansi",
         "--prompt=`"Ripgrep> `"",
         "--bind=`"ctrl-d:preview-page-down`"",
@@ -52,10 +53,13 @@ New-Module -ScriptBlock {
 
     $p.Start()
     $result = $p.StandardOutput.ReadLine()
+    $file = ($result -split ":", 2)[0]
+    $line = ((($result -split ":", 2)[1]) -split ":", 2)[0]
+    $insertText = "$file +$line"
     $p.WaitForExit()
 
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert($result)
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert($insertText)
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
   Export-ModuleMember MyFzf, MyRg
