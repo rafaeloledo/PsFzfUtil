@@ -24,7 +24,7 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    # [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert($result)
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
@@ -60,7 +60,7 @@ New-Module -ScriptBlock {
     $insertText = "$file +$line"
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    # [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert($insertText)
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
