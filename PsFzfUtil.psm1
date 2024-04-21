@@ -1,4 +1,6 @@
+
 New-Module -ScriptBlock {
+  $DEFAULT_EDITOR = 'v'
   $RG_PREFIX="rg --column --no-heading --color=always --smart-case"
   function MyFzf {
     $p = [System.Diagnostics.Process]@{StartInfo = @{
@@ -24,10 +26,12 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("`'$($result)`'")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
+
   function MyRg {
+    $DEFAULT_EDITOR = 'v'
     $p = [System.Diagnostics.Process]@{StartInfo = @{
       FileName = "fzf";
       Arguments = @(
@@ -58,7 +62,7 @@ New-Module -ScriptBlock {
     $line = ((($result -split ":", 2)[1]) -split ":", 2)[0]
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("`'$($file)`' +$line")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($file)`' +$line")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
   Export-ModuleMember MyFzf, MyRg
