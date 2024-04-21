@@ -24,8 +24,7 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    # [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert($result)
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("`'$($result)`'")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
   function MyRg {
@@ -57,11 +56,9 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $file = ($result -split ":", 2)[0]
     $line = ((($result -split ":", 2)[1]) -split ":", 2)[0]
-    $insertText = "$file +$line"
     $p.WaitForExit()
 
-    # [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert($insertText)
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("`'$($file)`' +$line")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
   }
   Export-ModuleMember MyFzf, MyRg
