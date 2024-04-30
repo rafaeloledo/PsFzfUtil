@@ -1,4 +1,4 @@
-
+Add-Type -AssemblyName System.Windows.Forms
 New-Module -ScriptBlock {
   $DEFAULT_EDITOR = 'v'
   $RG_PREFIX="rg --column --no-heading --color=always --smart-case"
@@ -26,8 +26,9 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`' \n")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
+    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
   }
 
   function MyRg {
@@ -64,6 +65,7 @@ New-Module -ScriptBlock {
 
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($file)`' +$line")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
+    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
   }
   Export-ModuleMember MyFzf, MyRg
 }
