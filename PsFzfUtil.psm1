@@ -26,7 +26,7 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`' \n")
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
     [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
   }
