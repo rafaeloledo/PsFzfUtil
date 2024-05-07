@@ -8,15 +8,16 @@ New-Module -ScriptBlock {
       Arguments = @(
         "--layout=reverse",
         "--height=100%",
-        "--border",
+        "--border=`"rounded`"",
         "--no-sort",
         "--preview-window=`"wrap`"",
         "--prompt=`"Search Directory> `""
         "--bind=`"ctrl-d:preview-page-down`"",
         "--bind=`"ctrl-u:preview-page-up`"",
         "--preview=`"bat --plain --color=always {}`"",
-        "--preview-window=`"60%`"",
-        "--color=`"bg+:#293739,bg:#1B1D1E,border:#808080,spinner:#E6DB74,hl:#7E8E91,fg:#F8F8F2,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#F8F8F2,prompt:#F92672,hl+:#F92671`""
+        "--preview-window=`"55%`"",
+        "--preview-window=`"border-rounded`"",
+        "--color=`"bg+:#202224,border:#424947,spinner:#E6DB74,hl:#7E8E91,fg:#6ccfef,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#a6a8aa,prompt:#F92672,hl+:#F92671`""
       );
       RedirectStandardOutput = $true;
       WorkingDirectory = $PWD;
@@ -28,7 +29,9 @@ New-Module -ScriptBlock {
 
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
-    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+    if ($result -ne $null) {
+      [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+    }
   }
 
   function MyRg {
@@ -65,7 +68,9 @@ New-Module -ScriptBlock {
 
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($file)`' +$line")
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
-    [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+    if ($result -ne $null) {
+      [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+    }
   }
   Export-ModuleMember MyFzf, MyRg
 }
