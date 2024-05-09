@@ -27,9 +27,9 @@ New-Module -ScriptBlock {
     $result = $p.StandardOutput.ReadLine()
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
-    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
     if ($result -ne $null) {
+      [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($result)`'")
+      [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
       [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
     }
   }
@@ -66,9 +66,9 @@ New-Module -ScriptBlock {
     $line = ((($result -split ":", 2)[1]) -split ":", 2)[0]
     $p.WaitForExit()
 
-    [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($file)`' +$line")
-    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
     if ($result -ne $null) {
+      [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($DEFAULT_EDITOR) `'$($file)`' +$line")
+      [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
       [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
     }
   }
