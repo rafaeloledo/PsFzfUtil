@@ -15,7 +15,7 @@ New-Module -ScriptBlock {
         "--bind=`"ctrl-d:preview-page-down`"",
         "--bind=`"ctrl-u:preview-page-up`"",
         "--preview=`"bat --plain --color=always {}`"",
-        "--preview-window=`"55%`"",
+        "--preview-window=`"56%`"",
         "--preview-window=`"border-rounded`"",
         "--color=`"bg+:#202224,border:#424947,spinner:#E6DB74,hl:#7E8E91,fg:#6ccfef,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#a6a8aa,prompt:#F92672,hl+:#F92671`""
       );
