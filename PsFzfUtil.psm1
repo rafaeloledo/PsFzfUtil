@@ -1,4 +1,5 @@
 Add-Type -AssemblyName System.Windows.Forms
+$arguments = @();
 New-Module -ScriptBlock {
   $DEFAULT_EDITOR = 'v'
   $RG_PREFIX="rg --column --no-heading --color=always --smart-case"
@@ -6,6 +7,9 @@ New-Module -ScriptBlock {
     $p = [System.Diagnostics.Process]@{StartInfo = @{
       FileName = "fzf";
       Arguments = @(
+        "-e",
+        "--multi",
+        "--ansi",
         "--layout=reverse",
         "--height=100%",
         "--border=`"rounded`"",
@@ -39,6 +43,9 @@ New-Module -ScriptBlock {
     $p = [System.Diagnostics.Process]@{StartInfo = @{
       FileName = "fzf";
       Arguments = @(
+        "-e",
+        "--multi",
+        "--ansi",
         "--layout=reverse",
         "--height=100%",
         "--preview-window=`"wrap`"",
